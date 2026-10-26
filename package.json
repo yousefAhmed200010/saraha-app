@@ -1,0 +1,28 @@
+{
+  "name": "new-folder-(3)",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {
+    "start:dev": "cross-env NODE_ENV=development node --watch src/main.js",
+    "start:prod": "cross-env NODE_ENV=production node src/main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "argon2": "^0.45.1",
+    "bcryptjs": "^3.0.3",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^18.0.7",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mogoose": "^0.0.1-security",
+    "mongodb": "^7.7.0",
+    "mongoose": "^9.11.1"
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0"
+  }
+}
