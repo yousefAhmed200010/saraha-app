@@ -1,11 +1,7 @@
-function globalerrmiddleware(err, req, res, next) {
-  const statusCode = err.statusCode || 500;
-
-  res.status(statusCode).json({
-    success: false,
-    message: err.message || "Internal Server Error",
-    stack: err.stack, // remove this line in production
-  });
+function globalErrMiddleware(err, req, res, next) {
+  res
+    .status(err.cause?.statusCode || 400)
+    .json({ errMsg: err.message, stack: err.stack, err, extra: err.cause });
 }
 
-export default globalerrmiddleware;
+export default globalErrMiddleware;

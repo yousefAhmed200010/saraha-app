@@ -1,8 +1,8 @@
 
-import jwt from "jsonwebtoken";
 import { ConflictException, NotFoundException } from "../../common/exceptions/app.exeption.js";
 import { encryptvalue } from "../../common/security/encrypt.js";
 import { compareHash, hashvalue } from "../../common/security/hash.js";
+import { createLoginTokens } from "../../common/security/token.security.js";
 import { createDoc, findOneDoc } from "../../DB/db.repo.js";
 import userModel1 from "../../DB/model/user.model.js";
 export async function signup(userData) {
@@ -42,8 +42,7 @@ export async function login(userData) {
     throw NotFoundException({ errMsg: "invalid email or password" });
   }
 
-  const token = jwt.sign({ test: "for test" }, "y_sogmature",)
-  return{token}
+  return createLoginTokens({ user });
 }
 
 // export async function signup(userData) {}

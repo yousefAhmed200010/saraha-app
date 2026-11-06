@@ -1,17 +1,36 @@
 import { Router } from "express";
-import { successResponse } from "../../common/responses/success.response.js";
-import { login, signup } from "./user.service.js";
+import { TokenTypeEnum } from "../../common/enum/token.enum.js";
+import { successResponse } from "../../common/response/success.response.js";
+import { RoleEnum } from "../../common/user.enum.js";
+import auth from "../../middleware/authentication.middleware.js";
+import { rotateToken } from "./user.service.js";
 
 const userRouter = Router();
 
-userRouter.post("/get-profile", async (req, res) => {
-  const result = await signup(req.body);
-  successResponse(res, 201, "created", result);
+userRouter.get("/get-profile", auth(), authorization([RoleEnum.ADMIN]), async (req, res) => {
+  
+
+
+
+
+
+  return successResponse({
+    res,
+    data: {
+      user: req.user,
+      payload: req.payload,
+    },
+  });
 });
 
-userRouter.post("/login", async (req, res) => {
-  const result = await login(req.body);
-  successResponse(res, 200, "success", result);
-});
+userRouter.post(
+  "/rotate-token",
+  auth(TokenTypeEnum.REFRESH),
+  async (req, res) => {
+    const result = await rotateToken(req.payload);
+
+    return successResponse({ res, data: result });
+  }
+);
 
 export default userRouter;

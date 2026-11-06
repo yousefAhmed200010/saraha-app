@@ -7,6 +7,21 @@ dotenv.config({path:process.env.NODE_ENV=="PROD"
 
 
 export const PORT = Number(process.env.PORT||3000);
+
 export const DB_URI = process.env.DB_ATLAS || "";
+
 export const SALT_ROUND = Number(process.env.SALT_ROUND) || 12;
+
 export const ENCRYP_KEY = process.env.ENCRYP_KEY || "";
+
+export const JWT_ACCESS_EXPIRES_IN = Number(process.env.JWT_ACCESS_EXPIRES_IN);
+
+
+export const JWT_ACCESS_SIGNATURE = process.env.JWT_ACCESS_SIGNATURE;
+export const JWT_USER_ACCESS_SIGNATURE = process.env.JWT_USER_ACCESS_SIGNATURE;
+
+export const JWT_REFRESH_EXPIRES_IN = Number(process.env.JWT_REFRESH_EXPIRES_IN);
+
+export const JWT_ADMIN_REFRESH_SIGNATURE = process.env.JWT_ADMIN_REFRESH_SIGNATURE;
+export const JWT_USER_REFRESH_SIGNATURE = process.env.JWT_USER_REFRESH_SIGNATURE;
+export const JWT_ADMIN_ACCESS_SIGNATURE = process.env.JWT_ADMIN_ACCESS_SIGNATURE;
